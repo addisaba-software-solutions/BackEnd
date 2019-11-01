@@ -61,7 +61,7 @@ class LoginForm extends React.Component{
   }
   render(){
     if(this.state.isLogging){
-    this.props.history.push("/chat");
+    this.props.history.push("/");
     }
     return (
 

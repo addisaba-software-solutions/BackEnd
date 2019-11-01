@@ -10,7 +10,7 @@ const LoginAuth = ({ component: Component, ...rest }) => {
         token ? (
           <Redirect
             to={{
-              pathname: "/chat",
+              pathname: "/",
               state: { from: props.location }
             }}
           />

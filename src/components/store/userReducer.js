@@ -11,7 +11,10 @@ const initialState = {
  error: null,
  messages:[],
  currentUserDetail:[],
-  is_typing:false,
+  is_typing:"false",
+  pusher_from:"",
+  pusher_to:"",
+  message_counter:0,
 }
 
 export default function userReducer(state = initialState, action) {
@@ -25,7 +28,8 @@ export default function userReducer(state = initialState, action) {
     case "ADD_MESSAGE":{
       return {
         ...state,
-        messages: state.messages.concat([action.payload])
+        messages: state.messages.concat([action.payload]),
+
       };
 }
     case 'clickToChat':{
@@ -34,6 +38,13 @@ export default function userReducer(state = initialState, action) {
         currentUserDetail: action.payload
       };
     }
+    case 'messageCounter':{
+      return {
+        ...state,
+        message_counter:action.payload
+      };
+    }
+    
     break;
     case FETCH_MESSAGES:{
       return {
@@ -41,12 +52,16 @@ export default function userReducer(state = initialState, action) {
         messages: action.payload
       };
     }
-    case "isTyping":{
+    case "addTypingInfo":{
+      //console.log("from case",action.payload.sender_id);
       return {
         ...state,
-        is_typing: action.payload
+        is_typing: action.payload.message,
+        pusher_from:action.payload.sender_id,
+        pusher_to:action.payload.reciever_id,
       };
     }
+
 
 
     break;
